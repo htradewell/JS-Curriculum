@@ -1,17 +1,17 @@
-function numberChecker(userNumber){
-    const generatedNumber = 1+Math.floor(Math.random()*100);
-    if (userNumber===generatedNumber){
-        return('Correct');
+function guess(userNumber){
+    const compNumber = Math.floor(Math.random()*100)+1;
+    if(compNumber === userNumber){
+        return('you Guessed right!!');
     }
-    else if (userNumber>generatedNumber){
-        return('number is too high');
+    else if(compNumber>userNumber){
+        return('too small');
     }
-    else if (userNumber<generatedNumber){
-        return('number is too low');
+    else if(userNumber>compNumber){
+        return('too big');
     }
-    else {
-        return('incorrect format');
+    else{
+        return('wrong format');
     }
 }
-const result = numberChecker(39);
+const result = guess(44);
 console.log(result);
