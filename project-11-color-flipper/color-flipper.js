@@ -1,13 +1,13 @@
-//set array of colours
-const colors = ["red", "blue", "green", "purple", "orange"];
-//asociate the button ellement with a variable
-const btn = document.querySelector("#flipBtn");
-//asociate the colour of the display with a variable
+//sets array of colors
+const colors = ['red', 'orange', 'green', 'blue', 'purple'];
+// asigns the button element to a usable variable
+const btn = document.querySelector('#flipBtn');
+// asigns the title color to a usable variable
 const colorTitle = document.querySelector('#colorDisplay');
-//listen for a click, when clicked sets colour
-btn.addEventListener('click', () =>{
-    const colorChosenIndex = Math.floor(Math.random() * colors.length);
-    const colorChosen = colors[colorChosenIndex];
+// changes color and title on click
+btn.addEventListener("click", () =>{
+    const colorChosen = colors[Math.floor(Math.random() * colors.length)];
+    colorTitle.textContent = `Color Chosen: ${colorChosen}`;
     document.body.style.backgroundColor = colorChosen;
-    colorTitle.textContent = `Current Color: ${colorChosen}`;
-})
+});
+
