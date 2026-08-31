@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Validator</title>
+    <style>
+      .error { color: red; font-size: 0.8em; }
+      .success { color: green; }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <div>
+        <input id="username" type="text" placeholder="Username"/>
+        <span class="error" id="usernameError"></span>
+      </div>
+      <div>
+        <input id="email" type="text" placeholder="Email"/>
+        <span class="error" id="emailError"></span>
+      </div>
+      <div>
+        <input id="password" type="password" placeholder="Password"/>
+        <span class="error" id="passwordError"></span>
+      </div>
+      <div>
+        <input id="confirmPassword" type="password" placeholder="Confirm Password"/>
+        <span class="error" id="confirmError"></span>
+      </div>
+      <button type="submit">Submit</button>
+      <p id="successMsg" class="success"></p>
+    </form>
+    <script src="form-validator.js"></script>
+  </body>
+</html>
