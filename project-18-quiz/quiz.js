@@ -3,7 +3,8 @@ const optionsSpace = document.querySelector('#options');
 const feedback = document.querySelector('#feedback');
 const nextBtn = document.querySelector('#nextBtn');
 const quizScreen = document.querySelector('#quiz');
-const scoreText = document.querySelector('#scoreText')
+const scoreText = document.querySelector('#scoreText');
+const restartBtn = document.querySelector('#restartBtn');
 let currentQuestion = 0;
 let score = 0;
 const resultScreen = document.querySelector('#result');
@@ -56,9 +57,15 @@ optionsSpace.addEventListener('click', (e)=>{
         else if (e.target.textContent === questions[currentQuestion].answer){
             feedback.textContent = 'correct!';
             score +=1;
+            optionsSpace.querySelectorAll('button').forEach(btn => {
+            btn.disabled = true;
+});
         }
         else{
             feedback.textContent = 'incorrect!';
+            optionsSpace.querySelectorAll('button').forEach(btn => {
+            btn.disabled = true;
+});
 
         }
 })
@@ -75,3 +82,11 @@ nextBtn.addEventListener('click', () =>{
         showQuestion(currentQuestion);
     }
 });
+restartBtn.addEventListener('click', ()=>{
+    currentQuestion = 0;
+    score = 0;
+    feedback.textContent = '';
+    resultScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    showQuestion(0);
+})
