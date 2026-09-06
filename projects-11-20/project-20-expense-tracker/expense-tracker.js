@@ -1,8 +1,8 @@
 let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 const total = document.querySelector('#total');
-const ul = document.querySelector('#expenseList')
+const ul = document.querySelector('#expenseList');
 function refreshTotal(){
-    let totalExpense = 0
+    let totalExpense = 0;
     expenses.forEach(expense =>{
             totalExpense = totalExpense + parseFloat(expense.amount);
     })
@@ -19,7 +19,7 @@ function renderExpenses(){
         deleteBtn.classList.add('delete-btn');
         nameSpan.textContent = expense.name;
         amountSpan.textContent = expense.amount;
-        deleteBtn.textContent = 'delete'
+        deleteBtn.textContent = 'delete';
         deleteBtn.dataset.id = expense.ID;
         li.appendChild(nameSpan);
         li.appendChild(amountSpan);
@@ -29,7 +29,7 @@ function renderExpenses(){
 }
 ul.addEventListener('click', (e)=>{
     if (e.target.tagName !== 'BUTTON') return;
-    const id = Number(e.target.dataset.id)
+    const id = Number(e.target.dataset.id);
     expenses = expenses.filter(expense => expense.ID !== id);
     renderExpenses();
     refreshTotal();
