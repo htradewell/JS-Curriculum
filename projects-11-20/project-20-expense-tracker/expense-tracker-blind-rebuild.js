@@ -1,4 +1,4 @@
-let expenses = JSON.parse(localStorage.getItem('expenses') || []);
+let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 const addBtn = document.querySelector('#addBtn');
 const ul = document.querySelector('#expenseList');
 const total = document.querySelector('#total');
@@ -30,15 +30,15 @@ ul.addEventListener('click', (e)=>{
     if (e.target.tagName !== 'BUTTON') return;
     const eliminatedID = Number(e.target.dataset.id);
     expenses = expenses.filter(expense => expense.id !== eliminatedID);
-    renderList();
-    updateTotal();
     localStorage.setItem('expenses', JSON.stringify(expenses));
     updateTotal();
     renderList();
 })
 addBtn.addEventListener('click', ()=>{
-    const expenseName = document.querySelector('#expenseName').value;
-    const expenseAmount = document.querySelector('#expenseAmount').value;
+    const expenseName = document.querySelector('#expenseName').value.trim();
+    if (expenseName === '') return;
+    const expenseAmount = document.querySelector('#expenseAmount').value.trim();
+    if (expenseAmount ==='') return;
     const id = Date.now();
     expenses.push({name: expenseName, amount: expenseAmount, id: id});
     renderList();

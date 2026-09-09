@@ -10,4 +10,3 @@ btn.addEventListener("click", () =>{
     colorTitle.textContent = `Color Chosen: ${colorChosen}`;
     document.body.style.backgroundColor = colorChosen;
 });
-

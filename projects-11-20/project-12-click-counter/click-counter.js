@@ -4,7 +4,7 @@ const resetBtn = document.querySelector("#resetBtn");
 const number = document.querySelector("#count");
 //sets counter
 let counter = 0;
-// sets the background color changer as a fucntion
+// sets the title color changer as a fucntion
 function backgroundColorChange(){
     if (counter === 0){
         number.style.color = 'black';
