@@ -1,4 +1,4 @@
-const api = '3410ba68';
+const api = 'imNotPuttingThatOnAPublicRepo';
 const input = document.querySelector('#searchInput');
 const results = document.querySelector('#results');
 async function searchMovies(film){
