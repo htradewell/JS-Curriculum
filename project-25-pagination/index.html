@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Movie Search</title>
+    <title>Movie Search with Pagination</title>
     <meta charset="UTF-8">
   </head>
   <body>
     <h1>Movie Search</h1>
-    <input id="searchInput" type="text" placeholder="Search for a movie..."/>
+    <input id="searchInput" type="text" placeholder="Search movies..."/>
     <div id="results"></div>
+    <div id="pagination">
+      <button id="prevBtn" disabled>Previous</button>
+      <span id="pageInfo"></span>
+      <button id="nextBtn" disabled>Next</button>
+    </div>
     <script src="pagination.js"></script>
   </body>
 </html>
