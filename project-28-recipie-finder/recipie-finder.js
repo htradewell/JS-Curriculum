@@ -14,24 +14,25 @@ async function getRecipies(search){
             recipieInfo = [];
             data.meals.forEach(meal=>{
                 recipieInfo.push({'mealName': meal.strMeal, 'cuisine': meal.strArea, 'thumbnail': meal.strMealThumb, 'category': meal.strCategory});
-                if (categoryInput.value === 'Any'){
-                    const html = recipieInfo.map(meal=>`<img src=${meal.thumbnail}></img>
-                        <div>Meal Name: ${meal.mealName}</div>
-                        <div>Cuisine: ${meal.cuisine}</div>
-                        <div>Category:${meal.category}f</div>`).join('');
-                        ul.innerHTML = html;
-                }
-            
-                else{
-                    recipieInfo=recipieInfo.filter(recipie=>recipie.category === categoryInput.value);
-                    const html = recipieInfo.map(meal=>`<img src=${meal.thumbnail}></img>
-                        <div>Meal Name: ${meal.mealName}</div>
-                        <div>Cuisine: ${meal.cuisine}</div>
-                        <div>Category:${meal.category}</div>`).join('');
-                        ul.innerHTML = html;
-                }
+            });
+            recipieInfo.sort((a, b) => a.mealName.localeCompare(b.mealName));    
+            if (categoryInput.value === 'Any'){
+                const html = recipieInfo.map(meal=>`<img src=${meal.thumbnail}></img>
+                    <div>Meal Name: ${meal.mealName}</div>
+                    <div>Cuisine: ${meal.cuisine}</div>
+                    <div>Category:${meal.category}</div>`).join('');
+                    ul.innerHTML = html;
             }
-    )
+        
+            else{
+                recipieInfo=recipieInfo.filter(recipie=>recipie.category === categoryInput.value);
+                const html = recipieInfo.map(meal=>`<img src=${meal.thumbnail}></img>
+                    <div>Meal Name: ${meal.mealName}</div>
+                    <div>Cuisine: ${meal.cuisine}</div>
+                    <div>Category:${meal.category}</div>`).join('');
+                    ul.innerHTML = html;
+            }
+            
 }
     catch(error){
         console.log(`Error: ${error}`)
