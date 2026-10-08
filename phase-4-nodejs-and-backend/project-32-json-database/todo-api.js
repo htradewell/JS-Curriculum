@@ -22,6 +22,7 @@ app.post('/todos', (req, res)=>{
     if (!text || text.trim()==='') return res.status(400).json({error: 'please enter a todo'});
     const todo = ({id: Date.now(), text: req.body.text , done: false});
     todos.push(todo);
+    arrayToFile();
     res.status(201).json(todo);
 });
 function getWithId(req){
@@ -32,12 +33,14 @@ app.put('/todos/:id', (req,res)=>{
     const givenTodo = getWithId(req);
     if (!givenTodo) return res.status(404).json({error: 'Please give an ID that exists'});
     givenTodo.done = true;
+    arrayToFile();
     res.json(givenTodo);
 });
 app.delete('/todos/:id', (req, res)=>{
     const givenTodo = getWithId(req);
     if (!givenTodo) return res.status(404).json({error: 'Please give an ID that exists'});
     todos = todos.filter(todo => todo.id !==givenTodo.id);
+    arrayToFile();
     res.json({message: 'The Todo with the given ID has been eliminated Sire'});
 });
 app.listen(3000, ()=>{
