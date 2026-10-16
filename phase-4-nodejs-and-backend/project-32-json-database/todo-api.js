@@ -3,24 +3,29 @@ const fs = require('fs');
 const app = express();
 const path = require('path');
 app.use(express.json());
-function fileToArray(){
-    const array = fs.existsSync(path.join(__dirname, 'todos.json')) && JSON.parse(fs.readFileSync(path.join(__dirname, 'todos.json'), 'utf-8'));
-    if (!array) return [];
-    return array;
+const FILE = path.join(__dirname, 'todos.json');
+function fileToArray() {
+    if (!fs.existsSync(FILE)) return [];
+    try {
+        const readAndParsed = JSON.parse(fs.readFileSync(FILE, 'utf-8'));
+        if (Array.isArray(readAndParsed)) return readAndParsed;
+        throw new Error('todos.json does not contain an array')
+    } catch (err) {
+        console.log(err);
+        return []; 
+    }
 }
 let todos = fileToArray();
 function arrayToFile(){
-    return fs.writeFileSync(path.join(__dirname, 'todos.json'), JSON.stringify(todos));
+    return fs.writeFileSync(FILE, JSON.stringify(todos));
 }
-arrayToFile();
-console.log(fileToArray());
 app.get('/todos', (req, res)=>{
     res.json(todos);
 });
 app.post('/todos', (req, res)=>{
     const text = req.body && req.body.text;
-    if (!text || text.trim()==='') return res.status(400).json({error: 'please enter a todo'});
-    const todo = ({id: Date.now(), text: req.body.text , done: false});
+    if (!text || typeof text !=='string' || text.trim()==='') return res.status(400).json({error: 'please enter a valid todo'});
+    const todo = ({id: Date.now(), text: req.body.text.trim() , done: false});
     todos.push(todo);
     arrayToFile();
     res.status(201).json(todo);
